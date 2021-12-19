@@ -61,6 +61,7 @@
         <v-btn @click="empty204">DELETE 空204</v-btn>
         <v-btn @click="emptyDict200">DELETE 空Dict200</v-btn>
         <v-btn @click="empty200">DELETE 空200</v-btn>
+        <v-btn @click="emptyArray200">GET 空配列</v-btn>
       </v-col>
     </v-row>
   </div>
@@ -241,6 +242,10 @@ export default class Sample extends Vue {
 
   empty200() {
     this.$axios.get('/api/accounts/empty-200/')
+  }
+
+  emptyArray200() {
+    this.$axios.get('/api/accounts/empty-array-200/')
   }
 }
 </script>

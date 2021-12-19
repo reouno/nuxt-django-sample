@@ -56,6 +56,12 @@ def just_empty_response_with_200(request):
     return Response(status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+def empty_array_response(request):
+    """Test of array response"""
+    return Response([], status=status.HTTP_200_OK)
+
+
 @ensure_csrf_cookie
 def set_csrf_token(request):
     """Set csrf token by set-cookie"""
