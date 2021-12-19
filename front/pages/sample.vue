@@ -55,6 +55,14 @@
         <v-btn @click="onClickDeleteNote(editingNote)">削除</v-btn>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <v-btn @click="emptyDict204">DELETE 空Dict204</v-btn>
+        <v-btn @click="empty204">DELETE 空204</v-btn>
+        <v-btn @click="emptyDict200">DELETE 空Dict200</v-btn>
+        <v-btn @click="empty200">DELETE 空200</v-btn>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -217,6 +225,22 @@ export default class Sample extends Vue {
     await this.deleteNote()
     await this.listNotes()
     this.editing = false
+  }
+
+  emptyDict204() {
+    this.$axios.get('/api/accounts/empty-dict-204/')
+  }
+
+  empty204() {
+    this.$axios.get('/api/accounts/empty-204/')
+  }
+
+  emptyDict200() {
+    this.$axios.get('/api/accounts/empty-dict-200/')
+  }
+
+  empty200() {
+    this.$axios.get('/api/accounts/empty-200/')
   }
 }
 </script>

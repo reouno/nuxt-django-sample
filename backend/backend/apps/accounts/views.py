@@ -14,17 +14,47 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import permissions, status
+from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models.models import CustomUser, ProvisionalUser
-from .serializers import UserSerializer, CreateUserSerializer, \
-    ProvisionalUserSerializer, NativeLoginSerializer, ChangePasswordSerializer
+from .serializers import ChangePasswordSerializer, CreateUserSerializer, NativeLoginSerializer, \
+    ProvisionalUserSerializer, UserSerializer
 from ...commons.error_format import format_error
-from ...commons.response import success_response, failure_response
+from ...commons.response import failure_response, success_response
 
 logger = logging.getLogger('django')
+
+
+# NO CONTENT と言っておきながら実際には '{}'というデータを返しているので正しくない
+@api_view(['GET', 'DELETE'])
+def empty_dict_response_with_204(request):
+    """Test of 204 no content response"""
+    return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+
+# 正しい
+@api_view(['GET', 'DELETE'])
+def just_empty_response_with_204(request):
+    """Test of 204 no content response"""
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# 正しい
+@api_view(['GET', 'DELETE'])
+def empty_dict_response_with_200(request):
+    """Test of 204 no content response"""
+    return Response({}, status=status.HTTP_200_OK)
+
+
+# 正しい（200でNO CONTENTは、仕様上間違いではない）
+@api_view(['GET', 'DELETE'])
+def just_empty_response_with_200(request):
+    """Test of 204 no content response"""
+    return Response(status=status.HTTP_200_OK)
+
 
 @ensure_csrf_cookie
 def set_csrf_token(request):

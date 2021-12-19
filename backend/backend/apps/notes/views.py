@@ -75,4 +75,12 @@ class UserNoteView(APIView):
         note = self.get_and_validate(pk, self.request.user)
         note.delete()
 
-        return Response({}, status=status.HTTP_204_NO_CONTENT)
+        # NOTE: これはだめ
+        # これだと、実際にはレスポンスボディが '{}' という空オブジェクトになり、 NO CONTENT ではないので、
+        # Cloud Runのプロキシを通過する時にエラーになり、502が返ってくる
+        # エラー内容としては、'upstream connect error or disconnect/reset before headers. reset reason: protocol error'
+        # という原因特定が困難なエラーが返ってきてしまうので注意。
+        # return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        # NO CONTENT にするならこれが正解
+        return Response(status=status.HTTP_204_NO_CONTENT)

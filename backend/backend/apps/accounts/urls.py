@@ -13,6 +13,11 @@ def security_routes(url_path: str) -> str:
 
 
 urlpatterns = [
+    path('empty-dict-204/', views.empty_dict_response_with_204, name='empty-dict-204'),
+    path('empty-204/', views.just_empty_response_with_204, name='empty-204'),
+    path('empty-dict-200/', views.empty_dict_response_with_200, name='empty-dict-200'),
+    path('empty-200/', views.just_empty_response_with_200, name='empty-200'),
+
     path('set-csrf/', views.set_csrf_token, name='Set-Csrf'),
     path('login/', views.Login.as_view(), name='Login'),
     path('logout/', views.Logout.as_view(), name='Logout'),
