@@ -40,8 +40,9 @@ SECRET_KEY = env("SECRET_KEY")
 ALLOWED_HOSTS = ['*']
 
 # FIXME: フロントURLを設定
-CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOWED_ORIGINS = ['*']
+CORS_ALLOWED_ORIGINS = [
+    'https://nuxt-django-sample.web.app'
+]
 
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = 'None'
