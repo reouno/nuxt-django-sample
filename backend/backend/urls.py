@@ -18,5 +18,6 @@ from django.urls import include, path, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'accounts/', include('backend.apps.accounts.urls'))
+    re_path(r'accounts/', include('backend.apps.accounts.urls')),
+    re_path(r'notes/', include('backend.apps.notes.urls')),
 ]

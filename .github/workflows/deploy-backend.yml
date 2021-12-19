@@ -38,6 +38,7 @@ jobs:
             --config cloudmigrate.yaml \
             --substitutions _INSTANCE_NAME=${{ env.INSTANCE_ID }},_REGION=${{ env.REGION }} \
             --quiet
+
       - name: Deploy to Cloud Run
         run: |-
           gcloud run deploy ${{ env.SERVICE }} \

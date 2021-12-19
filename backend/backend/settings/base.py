@@ -31,6 +31,7 @@ env_file = os.path.join(BASE_DIR, ".env")
 INSTALLED_APPS = [
     # Local apps
     'backend.apps.accounts.apps.AccountsConfig',
+    'backend.apps.notes.apps.NotesConfig',
 
     # 3rd party apps
     'corsheaders',
@@ -48,10 +49,14 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
+    # Custom middlewares
+    'backend.middlewares.force_disable_csrf.ForceDisableCsrf',
+
+    # Default middlewares
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -106,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SESSION_COOKIE_NAME = '__session'
 
 
 # Internationalization
