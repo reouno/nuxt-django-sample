@@ -1,0 +1,46 @@
+name: Build using Cloud Build and deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: backend
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  SERVICE: nuxt-django-sample
+  REGION: asia-northeast1
+
+jobs:
+  setup-build-deploy:
+    name: Setup, Build, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup gcloud CLI
+      - uses: google-github-actions/setup-gcloud@v0.2.1
+        with:
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ env.PROJECT_ID }}
+
+      # Build and push image to Google Container Registry
+      - name: Build
+        run: |-
+          gcloud builds submit \
+            --config cloudmigrate.yaml \
+            --substitutions _INSTANCE_NAME=surpassone-prd,_REGION=${{ env.REGION }} \
+            --quiet
+      - name: Deploy to Cloud Run
+        run: |-
+          gcloud run deploy ${{ env.SERVICE }} \
+            --region ${{ env.REGION }} \
+            --image gcr.io/nuxt-django-sample/nuxt-django-sample \
+            --platform "managed" \
+            --quiet

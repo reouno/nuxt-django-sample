@@ -1,0 +1,40 @@
+[
+  {
+    "model": "accounts.customuser",
+    "pk": "2f463f92-310a-48c9-8c73-415b7ca0670d",
+    "fields": {
+      "password": "pbkdf2_sha256$260000$FMOKNHHajPdZn0z3IUMlVq$a3VbS9IqvgebVUCDGCGNmAIr5vpqFMas8stGbJrVRKM=",
+      "last_login": "2021-07-03T07:09:01.254Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@example.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2021-06-07T02:18:45.282Z",
+      "birthday": null,
+      "gender": "not_say",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.customuser",
+    "pk": "9936cbfd-41f1-461b-9bd8-e32b10df0fea",
+    "fields": {
+      "password": "pbkdf2_sha256$260000$wFHXmPSdoH3rtxtDQ9qgSh$M1l8Ss0z2kBue0qgOjXefGwOfhTcOT3qK+jlmi1A9C4=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "ユーザー",
+      "last_name": "サンプル",
+      "email": "user@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-07-03T07:09:35Z",
+      "birthday": "2020-09-18",
+      "gender": "not_say",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

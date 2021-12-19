@@ -1,0 +1,17 @@
+[
+  {
+    "model": "accounts.gendermaster",
+    "pk": "female",
+    "fields": {}
+  },
+  {
+    "model": "accounts.gendermaster",
+    "pk": "male",
+    "fields": {}
+  },
+  {
+    "model": "accounts.gendermaster",
+    "pk": "not_say",
+    "fields": {}
+  }
+]
