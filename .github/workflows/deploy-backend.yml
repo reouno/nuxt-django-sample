@@ -44,4 +44,5 @@ jobs:
             --region ${{ env.REGION }} \
             --image gcr.io/nuxt-django-sample/nuxt-django-sample \
             --platform "managed" \
+            --allow-unauthenticated \
             --quiet
